@@ -16,7 +16,7 @@ jobs:
     - name: Configurando .Net 7...
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.202
+        dotnet-version: 8.0.x
     - name: Instalando dependencias..
       run: dotnet restore
     - name: Compilando...
