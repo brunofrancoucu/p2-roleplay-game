@@ -1,13 +1,13 @@
 using NUnit.Framework;
 
-namespace Test.Library
+namespace Library.Tests
 {
     public class ExampleTest
     {
         [Test]
-        public void dummyTest()
+        public void DummyTest()
         {
-            Assert.True(true);
+            Assert.Pass();
         }
     }
 }
