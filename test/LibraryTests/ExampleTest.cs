@@ -1,13 +1,15 @@
-using NUnit.Framework;
+namespace LibraryTests;
 
-namespace Library.Tests
+public class Tests
 {
-    public class ExampleTest
+    [SetUp]
+    public void Setup()
     {
-        [Test]
-        public void DummyTest()
-        {
-            Assert.Pass();
-        }
+    }
+
+    [Test]
+    public void Test1()
+    {
+        Assert.Pass();
     }
 }
