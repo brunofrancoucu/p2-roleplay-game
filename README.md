@@ -1,3 +1,8 @@
+# TODO
+Testing:
+
+- Pasar espada a mago 
+
 <img alt="UCU" src="https://www.ucu.edu.uy/plantillas/images/logo_ucu.svg"
 width="150"/>
 

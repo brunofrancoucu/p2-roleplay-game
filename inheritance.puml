@@ -24,6 +24,9 @@ class Item {
 class Armour {
 }
 
+' only weapon wizard can use
+class SpellWeapon
+
 class Weapon {
 }
 
@@ -38,27 +41,27 @@ class Inventory {
     + items: List<Item>
     + addItem(Item item): void
     + removeItem(Item item): void
-    + getItemsOfType<T>(): List<Item>
+    + getItemsOfType<T>(): List<T>
 }
 
 ' abstract
 class Character {
     + name: String
     + age: int
-    - speed: int ' movement speed
+    + speed: int ' movement speed
 
     - health: int         ' current health
-    - maxHealth: int      ' depends on armour
+    - _maxHealth(): int      ' calcs depend on armour
 
-    - armour: List<Armour>
-    - weapon: Weapon
-
-    + attack(Character character): void ' value depends on weapon
-    + defend(): void
-    + eat(): void ' Restore health via food items
+    + attack(Character character): void ' abstract value depends on weapon
+    + defend(): void ' abstract
+    + heal(): void ' abstract Restore health via food items
 }
 
 class Wizard {
+    - spell: int ' learnt spells add damage 
+    + book: SpellBook ' init null
+    + learn(Spell spell): void
 }
 
 class Elve {
@@ -66,7 +69,6 @@ class Elve {
 }
 
 class Dwarve {
-    + 
 }
 
 Inventory --|> Character
@@ -76,6 +78,7 @@ Character --|> Elve
 Character --|> Dwarve
 
 Item --|> SpellBook
+Item --|> SpellWeapone
 Item --|> Weapon
 Item --|> Armour
 Item --|> Spell
