@@ -78,7 +78,7 @@ Character --|> Elve
 Character --|> Dwarve
 
 Item --|> SpellBook
-Item --|> SpellWeapone
+Item --|> SpellWeapon
 Item --|> Weapon
 Item --|> Armour
 Item --|> Spell
