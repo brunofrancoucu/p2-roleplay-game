@@ -15,26 +15,30 @@ skinparam class {
 ' Style for arrows
 skinparam ArrowColor #00CCFF
 
-class Item {}
+class Item {
+    # name: String
+    # damage: int
+    # defence: int ' spell defence agg
+}
 
 class Armour {
-    # aggHealth: int
-    # name: String
 }
 
 class Weapon {
-    # damage: int
-    # name: String
 }
 
 class Spell {
-    + defence: int
-    + attach: int
-    + spell: int
 }
 
 class SpellBook {
     + spell: List<Spell>
+}
+
+class Inventory {
+    + items: List<Item>
+    + addItem(Item item): void
+    + removeItem(Item item): void
+    + getItemsOfType<T>(): List<Item>
 }
 
 ' abstract
@@ -55,8 +59,6 @@ class Character {
 }
 
 class Wizard {
-    - _spell: int ' depends on spells (book)
-    + smite(Character character): void ' attack w spell
 }
 
 class Elve {
@@ -67,6 +69,8 @@ class Dwarve {
     + 
 }
 
+Inventory --|> Character
+
 Character --|> Wizard
 Character --|> Elve
 Character --|> Dwarve
@@ -74,4 +78,5 @@ Character --|> Dwarve
 Item --|> SpellBook
 Item --|> Weapon
 Item --|> Armour
+Item --|> Spell
 @enduml
