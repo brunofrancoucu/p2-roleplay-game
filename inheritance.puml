@@ -1,0 +1,77 @@
+@startuml
+' Dark mode background
+skinparam backgroundColor #1E1E1E
+skinparam defaultTextColor #CCCCCC
+
+' Style for classes
+skinparam class {
+    BackgroundColor #2D2D30
+    BorderColor #007ACC
+    FontColor #FFFFFF
+    FooterFontColor #CCCCCC
+    AttributeFontColor #CCCCCC
+}
+
+' Style for arrows
+skinparam ArrowColor #00CCFF
+
+class Item {}
+
+class Armour {
+    # aggHealth: int
+    # name: String
+}
+
+class Weapon {
+    # damage: int
+    # name: String
+}
+
+class Spell {
+    + defence: int
+    + attach: int
+    + spell: int
+}
+
+class SpellBook {
+    + spell: List<Spell>
+}
+
+' abstract
+class Character {
+    + name: String
+    + age: int
+    - speed: int ' movement speed
+
+    - health: int         ' current health
+    - maxHealth: int      ' depends on armour
+
+    - armour: List<Armour>
+    - weapon: Weapon
+
+    + attack(Character character): void ' value depends on weapon
+    + defend(): void
+    + eat(): void ' Restore health via food items
+}
+
+class Wizard {
+    - _spell: int ' depends on spells (book)
+    + smite(Character character): void ' attack w spell
+}
+
+class Elve {
+    + heal(Character character): void
+}
+
+class Dwarve {
+    + 
+}
+
+Character --|> Wizard
+Character --|> Elve
+Character --|> Dwarve
+
+Item --|> SpellBook
+Item --|> Weapon
+Item --|> Armour
+@enduml
