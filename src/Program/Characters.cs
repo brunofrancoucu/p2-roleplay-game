@@ -19,6 +19,7 @@ namespace RoleplayGame.Characters
             return armour + spellDefence;
         }
 
+        // Learn / apply magic from current spell book
         public void Learn()
         {
             _spell = book.spells.Sum(spell => spell.damage);
