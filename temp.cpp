@@ -1,10 +1,3 @@
-class Inventory 
-    public List<T> GetItemsOfType<T>() where T : Item
-    {
-        return items.OfType<T>().ToList();
-    }
-
-
 Character;
     public void EquipWeapon(Weapon weapon)
     {
