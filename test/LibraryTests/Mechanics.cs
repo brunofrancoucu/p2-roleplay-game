@@ -42,4 +42,32 @@ public class Tests
         saruman.Heal(80);
         Assert.That(saruman.Health, Is.EqualTo(118));   // Post self heal health (test max)
     }
+    
+    [Test]
+    public void Battle2()
+    {
+        // Create Items
+        Armour dwarvenHelm = new Armour("Dwarven Helm", 8);
+        SpellWeapon warAxe = new SpellWeapon("War Axe", 20, 0);
+
+        Armour elvenHood = new Armour("Elven Hood", 5);
+        SpellWeapon elvenBlade = new SpellWeapon("Elven Blade", 12, 3);
+
+        // Create Characters
+        Dwarf gimli = new Dwarf("Gimli", 100);
+        gimli.AddItem(dwarvenHelm);
+        gimli.AddItem(warAxe);
+
+        Elf legolas = new Elf("Legolas", 100);
+        legolas.AddItem(elvenHood);
+        legolas.AddItem(elvenBlade);
+
+        // Dwarf attacker (total damage: 20)
+        gimli.Attack(legolas);
+
+        Assert.That(legolas.Health, Is.EqualTo(80));   // Post Gimli attack health
+        legolas.Heal(10);
+        Assert.That(legolas.Health, Is.EqualTo(90));  
+    }
 }
+
