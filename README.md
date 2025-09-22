@@ -1,16 +1,15 @@
-# TODO
-Testing:
+# Role-Playing Game
 
-- Pasar espada a mago 
+<img src="docs/inheritance.svg" />
+
+A role-playing game set in Middle-earth, modeling characters (wizards, elves, dwarves), items (weapons, armor, spellbooks), and interactions such as item management, combat mechanics, and health restoration. Includes UML modeling, implementation, and testing.
 
 <img alt="UCU" src="https://www.ucu.edu.uy/plantillas/images/logo_ucu.svg"
 width="150"/>
 
-# Universidad Católica del Uruguay
-
-## Facultad de Ingeniería y Tecnologías
-
 ### Programación II
+
+Universidad Católica del Uruguay Facultad de Ingeniería y Tecnologías
 
 # Encuentros futuros de la Tierra Media
 
