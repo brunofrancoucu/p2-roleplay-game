@@ -57,11 +57,12 @@
     {
         public string name { get; set; }  // Nombre del hechizo 
         public int damage { get; set; } // Daño que inflige el hechizo 
+        public int defence;
         
         public Spell(string name, int damage) // Inicializo el constructor 
         {
             this.name = name;  // Inicializa el nombre del hechizo 
-            this.damage = damage; // Inicializa el daño del hechizo 
+            this.damage = damage; // Inicializa el daño del hechizo
         }
     }
 

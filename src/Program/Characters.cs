@@ -1,5 +1,4 @@
-﻿using Item;
-using RoleplayGame.Characters;
+﻿using RoleplayGame.Characters;
 using RoleplayGame.Items;
 
 namespace RoleplayGame.Characters
@@ -32,73 +31,53 @@ namespace RoleplayGame.Characters
             return 100; // valor generico
         }
 
-        // Metodo para recibir daño
+        // Metodo para recibir daño, (defensa aumenta la vida, alt: disiminuye el dano).
         public void ReceiveDamage(int damage)
         {
-            int totalDefence = 0;
-            // Suma la defensa de todos los items que tiene el personaje
-            foreach(var item in GetItemsOfType<Item>())
-            {
-                totalDefence += item.Defence; 
-            }
+            // int totalDefence = GetItemsOfType<Armour>().Sum(arm => arm.defence);
+            // int damageTaken = Math.Max(damage - totalDefence, 0); // Si la defensa supera el daño, no se resta vida
 
             // Calcula el daño final que realmente afectará la vida
-            int damageTaken = damage - totalDefence;
-            if (damageTaken < 0)  // Si la defensa supera el daño, no se resta vida
-                damageTaken = 0;
-
-            health -= damageTaken;  // Reduce la vida por el daño recibido
-
-            if (health < 0)  // Evita que la vida sea negativa
-                health = 0;
+            health = Math.Max(health - damage, 0); // Evita que la vida sea negativa
         }
 
         // Método para curar al personaje
         public void Heal(int healAmount = 20)
         {
-            health += healAmount;  // Aumenta la vida en healAmount
-            if (health > MaxHealth())  // No permite que supere la vida máxima
-                health = MaxHealth();
+            health = Math.Min(health + healAmount, MaxHealth()); // No permite que supere la vida máxima
         }
 
-        // Métodos abstractos que deben implementar las clases hijas
+        // Método abstractos que deben implementar las clases hijas
         public abstract void Attack(Character character);  // Ataque a otro personaje
-        public abstract void Defend();                     // Defensa del personaje
     }
 }
+
+    // Wizard, presenta dominio de la mágia.
+    // La magia provee capacidades de ataque y de defensa a traves del SpellBook.
     public class Wizard : Character
     {
         private int _spell;
-        SpellBook book;
+        public SpellBook Book;
 
-        protected override int _MaxHealth()
+        public Wizard(string name, int initialHealth) : base(name, initialHealth) {}
+
+        protected override int MaxHealth()
         {
-            int spellDefence = book.Sum(spell => spell.damage);
+            int spellDefence = Book.spells.Sum(spell => spell.defence);
             int armour = GetItemsOfType<Armour>().Sum(arm => arm.defence);
-            return armour + spellDefence;
+            return Health + armour + spellDefence;
         }
 
         // Learn / apply magic from current spell book
         public void Learn()
         {
-            _spell = book.spells.Sum(spell => spell.damage);
+            _spell = Book.spells.Sum(spell => spell.damage);
         }
         
         public override void Attack(Character character)
         {
-            // isDefending = false;
-            int wpnSpell = GetItemsOfType<SpellWeapon>().Sum(wpn => wpn.damage); // Only spell weapons
-            character.health = Math.Max(health - (_spell + wpnSpell), 0);
-        }
-        
-        public override void Defend()
-        {
-            // isDefending = true;
-        }
-        
-        public override void Heal(int  healAmount = 20)
-        {
-            health = Math.Min(health + healAmount,_MaxHealth());
+            int wpnsSpell = GetItemsOfType<SpellWeapon>().Sum(wpn => wpn.damage); // Only spell weapons
+            character.ReceiveDamage(_spell + wpnsSpell);
         }
     }
 }
