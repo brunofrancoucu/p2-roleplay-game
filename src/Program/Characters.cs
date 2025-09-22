@@ -73,7 +73,7 @@ public class Wizard : Character
     }
 }
 
-    // Elf: puede tener ataques mágicos también
+// Elf: puede tener ataques mágicos también
 public class Elf : Character
 {
     public Elf(string name, int initialHealth) : base(name, initialHealth) {}
@@ -91,7 +91,7 @@ public class Elf : Character
     }
 }
 
-    // Dwarf: fuerte en combate físico
+// Dwarf: fuerte en combate físico
 public class Dwarf : Character
 {
     public Dwarf(string name, int initialHealth) : base(name, initialHealth) {}
