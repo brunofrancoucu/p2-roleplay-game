@@ -56,7 +56,7 @@ public class Wizard : Character
 {
     public SpellBook Book = null;
 
-    public Wizard(string name, int initialHealth) : base(name, initialHealth) {}
+        public Wizard(string name, int initialHealth) : base(name, initialHealth) {}
 
     protected override int MaxHealth()
     {
@@ -73,4 +73,37 @@ public class Wizard : Character
     }
 }
 
+    // Elf: puede tener ataques mágicos también
+public class Elf : Character
+{
+    public Elf(string name, int initialHealth) : base(name, initialHealth) {}
 
+    protected override int MaxHealth()
+    {
+        return 90; // por ejemplo, un elfo con menos vida máxima
+    }
+
+    public override void Attack(Character character)
+    {
+        // simplificado: ataque base mágico/físico a definir
+        int baseAttack = 15;
+        character.ReceiveDamage(baseAttack);
+    }
+}
+
+    // Dwarf: fuerte en combate físico
+public class Dwarf : Character
+{
+    public Dwarf(string name, int initialHealth) : base(name, initialHealth) {}
+
+    protected override int MaxHealth()
+    {
+        return 120; //  más resistentes
+    }
+
+    public override void Attack(Character character)
+    {
+        int baseAttack = 20; // ataque físico fuerte
+        character.ReceiveDamage(baseAttack);
+    }
+}
