@@ -1,0 +1,85 @@
+@startuml
+' Dark mode background
+skinparam backgroundColor #1E1E1E
+skinparam defaultTextColor #CCCCCC
+
+' Style for classes
+skinparam class {
+    BackgroundColor #2D2D30
+    BorderColor #007ACC
+    FontColor #FFFFFF
+    FooterFontColor #CCCCCC
+    AttributeFontColor #CCCCCC
+}
+
+' Style for arrows
+skinparam ArrowColor #00CCFF
+
+class Item {
+    # name: String
+    # damage: int
+    # defence: int ' spell defence agg
+}
+
+class Armour {
+}
+
+' only weapon wizard can use
+class SpellWeapon
+
+class Weapon {
+}
+
+class Spell {
+}
+
+class SpellBook {
+    + spell: List<Spell>
+}
+
+class Inventory {
+    + items: List<Item>
+    + addItem(Item item): void
+    + removeItem(Item item): void
+    + getItemsOfType<T>(): List<T>
+}
+
+' abstract
+class Character {
+    + name: String
+    + age: int
+    + speed: int ' movement speed
+
+    - health: int         ' current health
+    - _maxHealth(): int      ' calcs depend on armour
+
+    + attack(Character character): void ' abstract value depends on weapon
+    + defend(): void ' abstract
+    + heal(): void ' abstract Restore health via food items
+}
+
+class Wizard {
+    - spell: int ' learnt spells add damage 
+    + book: SpellBook ' init null
+    + learn(Spell spell): void
+}
+
+class Elve {
+    + heal(Character character): void
+}
+
+class Dwarve {
+}
+
+Inventory --|> Character
+
+Character --|> Wizard
+Character --|> Elve
+Character --|> Dwarve
+
+Item --|> SpellBook
+Item --|> SpellWeapon
+Item --|> Weapon
+Item --|> Armour
+Item --|> Spell
+@enduml
